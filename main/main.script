@@ -1,0 +1,127 @@
+local INPUT = require("modules.input")
+
+local smooth = 10
+local base_step = 8
+local jump_step = 16
+local freq = 1
+local update_timer
+local movement_vector = vmath.vector3(0, 0, 0)
+local next_freq = 0
+local prev_pos
+
+local collisions = {}
+local state
+
+local test_collision = false
+
+local function cast_and_mark(from)
+	local pos = go.get_world_position()
+	local ray = physics.raycast(from, go.get_world_position(), {hash("world")})
+	if ray then
+		pprint(ray)
+		--_ = ray[1].position
+		--_.z = 1
+		--local marker = factory.create("#marker", _)
+		--go.set(msg.url(nil, marker, "sprite"), "tint", vmath.vector4(1, 0, 0, 1))
+		--return _
+	end
+end
+
+local function upd_1(self)
+	if INPUT.inputs[hash("left")] and not collisions[hash("left")] then
+		movement_vector.x = -base_step
+	elseif INPUT.inputs[hash("right")] and not collisions[hash("right")] then
+		movement_vector.x = base_step
+	else
+		movement_vector.x = 0
+	end
+	if INPUT.inputs[hash("up")] and not state then
+		movement_vector.y = jump_step
+		state = "jump"
+	else
+		if not collisions[hash("bottom")] then
+			movement_vector.y = movement_vector.y - (0.2 * freq)
+		else
+			movement_vector.y = 0
+			state = nil
+		end
+		if collisions[hash("top")] and movement_vector.y > 0 then
+			movement_vector.y = 0
+			state = "jump"
+		end
+	end
+	local new_pos = go.get_world_position() + movement_vector * freq
+	go.set_position(new_pos, "/tester")
+	test_collision = true
+	print("first")
+end
+
+local function upd(self)
+	local skip_movement
+	if collisions[hash("body")] and not (prev_pos == go.get_world_position()) then
+		local pos = go.get_world_position()
+		local ray = physics.raycast(prev_pos, pos, {hash("world")})
+		if ray then
+			go.set_position(ray.position + ray.normal * 25)
+			skip_movement = true
+		end
+	end
+	if not skip_movement then
+		prev_pos = go.get_world_position()
+		
+	end
+	local width, height = window.get_size()
+	local cam_pos = vmath.vector3(-width / 2, -height / 2, 0) + go.get_world_position()
+	go.animate("/cam", "position", go.PLAYBACK_ONCE_FORWARD, cam_pos, go.EASING_INOUTSINE, freq / 60)
+	--go.set_position(cam_pos, "/cam")
+	update_timer = timer.delay(freq / 60, false, upd_1)
+	collisions = {}
+end
+
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	msg.post("@render:", "use_fixed_fit_projection", {near = -1, far = 1})
+	msg.post("/cam", hash("acquire_camera_focus"))
+	go.set_position(go.get_world_position(), "/tester")
+	upd_1(self)
+end
+
+function on_input(self, action_id, action)
+	if action_id then
+		local key_pressed = INPUT.key[action_id]
+		if action.pressed then
+			if key_pressed == hash("speed_up") then
+				freq = math.max(freq / math.sqrt(2), 0.25)
+			elseif key_pressed == hash("slow_down") then
+				freq = math.min(freq * math.sqrt(2), 16)
+			elseif key_pressed == hash("special") then
+
+			end
+		end
+		if key_pressed then
+			INPUT.inputs[key_pressed] = action.pressed or not action.released
+		end
+	end
+end
+
+function update(self, dt)
+	if test_collision then
+		test_collision = false
+		print("yay")
+	end
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("collision_response") then
+		collisions[message.own_group] = true
+	elseif message_id == hash("contact_point_response") then
+		print(message.own_group)
+		if message.own_group == hash("body") then
+			--if message.normal.y == 1 then
+				go.set_position(go.get_world_position() + message.normal * 25)
+			--end
+		end
+		--print(go.get_world_position(), (message.distance * message.normal))
+		--go.set_position(go.get_world_position() + (message.distance * message.normal)) 
+	end
+end
