@@ -4,7 +4,7 @@ instances {
   prototype: "/main/char/char.go"
   position {
     x: 586.0
-    y: 294.0
+    y: 350.0
     z: 1.0
   }
   rotation {
@@ -14,29 +14,9 @@ instances {
     w: 0.9999875
   }
   scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "tester"
-  prototype: "/main/char/tester.go"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
+    x: 2.0
+    y: 2.0
+    z: 2.0
   }
 }
 scale_along_z: 0
@@ -67,10 +47,10 @@ embedded_instances {
   "restitution: 0.5\\n"
   "group: \\\"world\\\"\\n"
   "mask: \\\"body\\\"\\n"
-  "mask: \\\"bottom\\\"\\n"
-  "mask: \\\"top\\\"\\n"
-  "mask: \\\"left\\\"\\n"
-  "mask: \\\"right\\\"\\n"
+  "mask: \\\"tr\\\"\\n"
+  "mask: \\\"br\\\"\\n"
+  "mask: \\\"tl\\\"\\n"
+  "mask: \\\"bl\\\"\\n"
   "linear_damping: 0.0\\n"
   "angular_damping: 0.0\\n"
   "locked_rotation: false\\n"
