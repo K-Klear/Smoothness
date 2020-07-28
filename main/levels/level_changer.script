@@ -1,0 +1,22 @@
+local function unload_level(self)
+	if self.level then
+		for key, val in pairs(self.level) do
+			go.delete(val)
+		end
+		self.level = nil
+	end
+end
+
+local function load_level(self, level)
+	unload_level(self)
+	self.level = collectionfactory.create(level)
+end
+
+function init(self)
+	load_level(self, "#level_01")
+	timer.delay(3, false, function() load_level(self, "#level_01") end)
+end
+
+function on_message(self, message_id, message, sender)
+
+end

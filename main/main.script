@@ -1,12 +1,10 @@
 local INPUT = require("modules.input")
 
-local smooth = 10
-local base_step = 8
-local jump_step = 8
+local base_step = 10
+local jump_step = 10
 local freq = 1
+local freq_list = {60, 30, 15, 10, 5, 2, 1}
 local update_timer
-local next_freq = 0
-local prev_pos
 
 local state
 local movement_vector = vmath.vector3(0, 0, 0)
@@ -35,13 +33,14 @@ local function upd(self)
 		ray_1 = physics.raycast(pos + vmath.vector3(-co_size + margin, co_size, 0), pos + vmath.vector3(-co_size + margin, -co_size - margin, 0), {hash("world")})
 		ray_2 = physics.raycast(pos + vmath.vector3(co_size - margin, co_size, 0), pos + vmath.vector3(co_size - margin, -co_size - margin, 0), {hash("world")})
 		if (ray_1 == nil and ray_2 == nil) then
-			movement_vector.y = movement_vector.y - (0.2 * freq)
+			movement_vector.y = movement_vector.y - (0.2 * (60 / freq_list[freq]))
 		elseif INPUT.inputs[hash("up")] then
 			movement_vector.y = jump_step
 			state = "jump"
 		end
 
-		local new_pos = pos + movement_vector * freq
+		local new_pos = pos + movement_vector * (60 / freq_list[freq])
+		print(60 / freq_list[freq])
 		up, down, left, right = {}, {}, {}, {}
 		_up, _down, _left, _right = {}, {}, {}, {}
 
@@ -109,18 +108,13 @@ local function upd(self)
 		new_pos.y = pos_override.y or new_pos.y
 		go.set_position(new_pos)
 	end
-	
-	local width, height = window.get_size()
-	local cam_pos = vmath.vector3(-width / 2, -height / 2, 0) + go.get_world_position()
-	go.animate("/cam", "position", go.PLAYBACK_ONCE_FORWARD, cam_pos, go.EASING_INOUTSINE, freq / 60)
-	--go.set_position(cam_pos, "/cam")
-	update_timer = timer.delay(freq / 60, false, upd)
+	update_timer = timer.delay(1 / freq_list[freq], false, upd)
 end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
-	msg.post("@render:", "use_fixed_fit_projection", {near = -1, far = 1})
-	msg.post("/cam", hash("acquire_camera_focus"))
+	msg.post("@render:", "use_fixed_projection", {near = -2, far = 2, zoom = 0.5})
+	msg.post("/gui", hash("change_frequency"), {freq = freq_list[freq]})
 	upd(self)
 end
 
@@ -129,9 +123,15 @@ function on_input(self, action_id, action)
 		local key_pressed = INPUT.key[action_id]
 		if action.pressed then
 			if key_pressed == hash("speed_up") then
-				freq = math.max(freq / math.sqrt(2), 0.25)
+				if freq_list[freq - 1] then
+					freq = freq - 1
+				end
+				msg.post("/gui", hash("change_frequency"), {freq = freq_list[freq]})
 			elseif key_pressed == hash("slow_down") then
-				freq = math.min(freq * math.sqrt(2), 16)
+				if freq_list[freq + 1] then
+					freq = freq + 1
+				end
+				msg.post("/gui", hash("change_frequency"), {freq = freq_list[freq]})
 			elseif key_pressed == hash("special") then
 
 			end
@@ -144,7 +144,9 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("collision_response") then
-		
+		if message.other_group == hash("exit") then
+			os.exit()
+		end
 	elseif message_id == hash("contact_point_response") then
 
 	elseif message_id == hash("trigger_response") then

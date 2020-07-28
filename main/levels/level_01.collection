@@ -1,33 +1,17 @@
-name: "main"
-scale_along_z: 0
-embedded_instances {
-  id: "gui"
-  data: "components {\n"
-  "  id: \"hud\"\n"
-  "  component: \"/main/gui/hud.gui\"\n"
-  "  position {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "  }\n"
-  "  rotation {\n"
-  "    x: 0.0\n"
-  "    y: 0.0\n"
-  "    z: 0.0\n"
-  "    w: 1.0\n"
-  "  }\n"
-  "}\n"
-  ""
+name: "default"
+instances {
+  id: "char"
+  prototype: "/main/char/char.go"
   position {
-    x: 0.0
-    y: 0.0
+    x: -493.0
+    y: 275.0
     z: 0.0
   }
   rotation {
     x: 0.0
-    y: 0.0
+    y: 0.0050036456
     z: 0.0
-    w: 1.0
+    w: 0.9999875
   }
   scale3 {
     x: 1.0
@@ -35,15 +19,16 @@ embedded_instances {
     z: 1.0
   }
 }
+scale_along_z: 0
 embedded_instances {
-  id: "levels"
+  id: "world"
   data: "components {\n"
-  "  id: \"level_changer\"\n"
-  "  component: \"/main/levels/level_changer.script\"\n"
+  "  id: \"level_01\"\n"
+  "  component: \"/main/levels/level_01.tilemap\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
-  "    z: 0.0\n"
+  "    z: -1.0\n"
   "  }\n"
   "  rotation {\n"
   "    x: 0.0\n"
@@ -53,10 +38,18 @@ embedded_instances {
   "  }\n"
   "}\n"
   "embedded_components {\n"
-  "  id: \"level_01\"\n"
-  "  type: \"collectionfactory\"\n"
-  "  data: \"prototype: \\\"/main/levels/level_01.collection\\\"\\n"
-  "load_dynamically: false\\n"
+  "  id: \"collisionobject\"\n"
+  "  type: \"collisionobject\"\n"
+  "  data: \"collision_shape: \\\"/main/levels/level_01.tilemap\\\"\\n"
+  "type: COLLISION_OBJECT_TYPE_STATIC\\n"
+  "mass: 0.0\\n"
+  "friction: 0.1\\n"
+  "restitution: 0.5\\n"
+  "group: \\\"world, space\\\"\\n"
+  "mask: \\\"body\\\"\\n"
+  "linear_damping: 0.0\\n"
+  "angular_damping: 0.0\\n"
+  "locked_rotation: false\\n"
   "\"\n"
   "  position {\n"
   "    x: 0.0\n"
@@ -72,8 +65,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: 0.0
-    y: 0.0
+    x: -640.0
+    y: -320.0
     z: 0.0
   }
   rotation {
