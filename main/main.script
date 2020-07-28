@@ -2,7 +2,7 @@ local INPUT = require("modules.input")
 
 local smooth = 10
 local base_step = 8
-local jump_step = 16
+local jump_step = 8
 local freq = 1
 local update_timer
 local next_freq = 0
@@ -12,120 +12,103 @@ local state
 local movement_vector = vmath.vector3(0, 0, 0)
 
 local size = 80
-local margin = 1
+local margin = 4
 
 local function upd(self)
 	local pos_override = {}
 	local pos = go.get_world_position()
 	local co_size = (size / 2)
-	local ray_1, ray_2
-	if INPUT.inputs[hash("left")] then
-		ray_1 = physics.raycast(pos, pos + vmath.vector3(-co_size, -co_size + margin, 0), {hash("world")})
-		ray_2 = physics.raycast(pos, pos + vmath.vector3(-co_size, co_size - margin, 0), {hash("world")})
-		if not (ray_1 or ray_2) then
+	local up, down, left, right = {}, {}, {}, {}
+
+	if state == "glitched" then
+
+	else
+		if INPUT.inputs[hash("left")] then
 			movement_vector.x = -base_step
-		else
-			movement_vector.x = 0
-		end
-	elseif INPUT.inputs[hash("right")] then
-		ray_1 = physics.raycast(pos, pos + vmath.vector3(co_size, -co_size + margin, 0), {hash("world")})
-		ray_2 = physics.raycast(pos, pos + vmath.vector3(co_size, co_size - margin, 0), {hash("world")})
-		if not (ray_1 or ray_2) then
+		elseif INPUT.inputs[hash("right")] then
 			movement_vector.x = base_step
 		else
 			movement_vector.x = 0
 		end
-	else
-		movement_vector.x = 0
-	end
 
-
-
-	ray_1 = physics.raycast(pos, pos + vmath.vector3(-co_size, -co_size, 0), {hash("world")})
-	ray_2 = physics.raycast(pos, pos + vmath.vector3(co_size, -co_size, 0), {hash("world")})
-	if not (ray_1 or ray_2) then
-		movement_vector.y = movement_vector.y - (0.2 * freq)
-	else
-		movement_vector.y = 0
-		state = nil
-	end
-
-
-	
-	if INPUT.inputs[hash("up")] and not (state == "jump") then
-		movement_vector.y = jump_step
-		state = "jump"
-	end
-
-
-	
-	local new_pos = pos + movement_vector * freq
-	local up, down, left, right = {}, {}, {}, {}
-
-	if vmath.length(movement_vector) > 0 then
-		table.insert(up, physics.raycast(new_pos, new_pos + vmath.vector3(-co_size + margin, co_size, 0), {hash("world")}))
-		table.insert(up, physics.raycast(new_pos, new_pos + vmath.vector3(co_size - margin, co_size, 0), {hash("world")}))
-		table.insert(down, physics.raycast(new_pos, new_pos + vmath.vector3(-co_size + margin, -co_size, 0), {hash("world")}))
-		table.insert(down, physics.raycast(new_pos, new_pos + vmath.vector3(co_size - margin, -co_size, 0), {hash("world")}))
-		table.insert(left, physics.raycast(new_pos + vmath.vector3(co_size, co_size - margin, 0), new_pos + vmath.vector3(-co_size, co_size - margin, 0), {hash("world")}))
-		table.insert(left, physics.raycast(new_pos + vmath.vector3(co_size, -co_size + margin, 0), new_pos + vmath.vector3(-co_size, -co_size + margin, 0), {hash("world")}))
-		msg.post("@render:", "draw_line", {start_point = new_pos + vmath.vector3(co_size, -co_size + margin, 0), end_point = new_pos + vmath.vector3(-co_size, -co_size + margin, 0), color = vmath.vector4(1, 0, 0, 1)})
-		table.insert(right, physics.raycast(new_pos, new_pos + vmath.vector3(co_size, co_size - margin, 0), {hash("world")}))
-		table.insert(right, physics.raycast(new_pos, new_pos + vmath.vector3(co_size, -co_size + margin, 0), {hash("world")}))
-		--msg.post("@render:", "draw_line", {start_point = new_pos, end_point = left[1].position, color = vmath.vector4(1, 0, 0, 1)})
-
-
-		print(#up, #down, #left, #right)
-		if false and #up > 0 and #down > 0 and #left > 0 and #right > 0 then
-			go.set("#sprite", "tint", vmath.vector4(1, 0, 0, 1))
-			pos_override = {}
-			state = nil
-			movement_vector.y = 0
-			movement_vector.x = 0
-		else
-			if movement_vector.x < 0 then
-				for key, val in ipairs(left) do
-					if pos_override.x then
-						pos_override.x = math.max(pos_override.x, val.position.x + (size / 2))--, new_pos.x)
-					else
-						pos_override.x = val.position.x + (size / 2)
-					end
-				end
-			elseif movement_vector.x > 0 then
-				for key, val in ipairs(right) do
-					if pos_override.x then
-						pos_override.x = math.min(pos_override.x, val.position.x - (size / 2), new_pos.x)
-					else
-						pos_override.x = val.position.x - (size / 2)
-					end
-				end
-			end
-			if movement_vector.y < 0 then
-				for key, val in ipairs(down) do
-					if pos_override.y then
-						pos_override.y = math.max(pos_override.y, val.position.y + (size / 2), new_pos.y)
-					else
-						pos_override.y = val.position.y + (size / 2)
-					end
-					movement_vector.y = 0
-				end
-			elseif movement_vector.y > 0 then
-				for key, val in ipairs(up) do
-					if pos_override.y then
-						pos_override.y = math.min(pos_override.y, val.position.y - (size / 2), new_pos.y)
-					else
-						pos_override.y = val.position.y - (size / 2)
-					end
-					movement_vector.y = 0
-				end
-			end
-			go.set("#sprite", "tint", vmath.vector4(1, 1, 1, 1))
+		local ray_1, ray_2
+		ray_1 = physics.raycast(pos + vmath.vector3(-co_size + margin, co_size, 0), pos + vmath.vector3(-co_size + margin, -co_size - margin, 0), {hash("world")})
+		ray_2 = physics.raycast(pos + vmath.vector3(co_size - margin, co_size, 0), pos + vmath.vector3(co_size - margin, -co_size - margin, 0), {hash("world")})
+		if (ray_1 == nil and ray_2 == nil) then
+			movement_vector.y = movement_vector.y - (0.2 * freq)
+		elseif INPUT.inputs[hash("up")] then
+			movement_vector.y = jump_step
+			state = "jump"
 		end
 
+		local new_pos = pos + movement_vector * freq
+		up, down, left, right = {}, {}, {}, {}
+		_up, _down, _left, _right = {}, {}, {}, {}
+
+		local _new_pos = vmath.vector3(pos.x, new_pos.y, 0)
+		table.insert(up, physics.raycast(_new_pos + vmath.vector3(-co_size + margin, -co_size, 0), _new_pos + vmath.vector3(-co_size + margin, co_size, 0), {hash("world")}))
+		table.insert(up, physics.raycast(_new_pos + vmath.vector3(co_size - margin, -co_size, 0), _new_pos + vmath.vector3(co_size - margin, co_size, 0), {hash("world")}))
+		table.insert(_up, physics.raycast(_new_pos + vmath.vector3(-co_size + margin, co_size, 0), _new_pos + vmath.vector3(-co_size + margin, -co_size, 0), {hash("space")}))
+		table.insert(_up, physics.raycast(_new_pos + vmath.vector3(co_size - margin, co_size, 0), _new_pos + vmath.vector3(co_size - margin, -co_size, 0), {hash("space")}))
+		table.insert(down, physics.raycast(_new_pos + vmath.vector3(-co_size + margin, co_size, 0), _new_pos + vmath.vector3(-co_size + margin, -co_size, 0), {hash("world")}))
+		table.insert(down, physics.raycast(_new_pos + vmath.vector3(co_size - margin, co_size, 0), _new_pos + vmath.vector3(co_size - margin, -co_size, 0), {hash("world")}))
+		table.insert(_down, physics.raycast(_new_pos + vmath.vector3(-co_size + margin, -co_size, 0), _new_pos + vmath.vector3(-co_size + margin, co_size, 0), {hash("space")}))
+		table.insert(_down, physics.raycast(_new_pos + vmath.vector3(co_size - margin, -co_size, 0), _new_pos + vmath.vector3(co_size - margin, co_size, 0), {hash("space")}))
+		_new_pos = vmath.vector3(new_pos.x, pos.y, 0)
+		table.insert(left, physics.raycast(_new_pos + vmath.vector3(co_size, co_size - margin, 0), _new_pos + vmath.vector3(-co_size, co_size - margin, 0), {hash("world")}))
+		table.insert(left, physics.raycast(_new_pos + vmath.vector3(co_size, -co_size + margin, 0), _new_pos + vmath.vector3(-co_size, -co_size + margin, 0), {hash("world")}))
+		table.insert(_left, physics.raycast(_new_pos + vmath.vector3(-co_size, co_size - margin, 0), _new_pos + vmath.vector3(co_size, co_size - margin, 0), {hash("space")}))
+		table.insert(_left, physics.raycast(_new_pos + vmath.vector3(-co_size, -co_size + margin, 0), _new_pos + vmath.vector3(co_size, -co_size + margin, 0), {hash("space")}))
+		table.insert(right, physics.raycast(_new_pos + vmath.vector3(-co_size, co_size - margin, 0), _new_pos + vmath.vector3(co_size, co_size - margin, 0), {hash("world")}))
+		table.insert(right, physics.raycast(_new_pos + vmath.vector3(-co_size, -co_size + margin, 0), _new_pos + vmath.vector3(co_size, -co_size + margin, 0), {hash("world")}))
+		table.insert(_right, physics.raycast(_new_pos + vmath.vector3(co_size, co_size - margin, 0), _new_pos + vmath.vector3(-co_size, co_size - margin, 0), {hash("space")}))
+		table.insert(_right, physics.raycast(_new_pos + vmath.vector3(co_size, -co_size + margin, 0), _new_pos + vmath.vector3(-co_size, -co_size + margin, 0), {hash("space")}))
+		
+		if movement_vector.x < 0 and #_left > 0 then
+			for key, val in ipairs(left) do
+				if pos_override.x then
+					pos_override.x = math.max(pos_override.x, val.position.x + (size / 2))--, new_pos.x)
+				else
+					pos_override.x = val.position.x + (size / 2)
+				end
+			end
+		elseif movement_vector.x > 0 and #_right > 0 then
+			for key, val in ipairs(right) do
+				if pos_override.x then
+					pos_override.x = math.min(pos_override.x, val.position.x - (size / 2), new_pos.x)
+				else
+					pos_override.x = val.position.x - (size / 2)
+				end
+			end
+		end
+		if movement_vector.y < 0 and #_down > 0 then
+			for key, val in ipairs(down) do
+				if pos_override.y then
+					pos_override.y = math.max(pos_override.y, val.position.y + (size / 2), new_pos.y)
+				else
+					pos_override.y = val.position.y + (size / 2)
+				end
+				movement_vector.y = 0
+				new_pos.y = pos.y
+				state = nil
+			end
+		elseif movement_vector.y > 0 and #_up > 0 then
+			for key, val in ipairs(up) do
+				if pos_override.y then
+					pos_override.y = math.min(pos_override.y, val.position.y - (size / 2), new_pos.y)
+				else
+					pos_override.y = val.position.y - (size / 2)
+				end
+				movement_vector.y = 0
+				new_pos.y = pos.y
+			end
+		end
+		go.set("#sprite", "tint", vmath.vector4(1, 1, 1, 1))
+
+		new_pos.x = pos_override.x or new_pos.x
+		new_pos.y = pos_override.y or new_pos.y
+		go.set_position(new_pos)
 	end
-	new_pos.x = pos_override.x or new_pos.x
-	new_pos.y = pos_override.y or new_pos.y
-	go.set_position(new_pos)
 	
 	local width, height = window.get_size()
 	local cam_pos = vmath.vector3(-width / 2, -height / 2, 0) + go.get_world_position()
@@ -163,6 +146,8 @@ function on_message(self, message_id, message, sender)
 	if message_id == hash("collision_response") then
 		
 	elseif message_id == hash("contact_point_response") then
-		
+
+	elseif message_id == hash("trigger_response") then
+
 	end
 end
