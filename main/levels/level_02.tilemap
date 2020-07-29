@@ -998,77 +998,7 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 34
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 35
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 36
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 37
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 38
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 39
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 40
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 41
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 42
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 43
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 44
     y: 15
     tile: 0
     h_flip: 0
@@ -1089,13 +1019,6 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 47
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 48
     y: 15
     tile: 0
@@ -1104,13 +1027,6 @@ layers {
   }
   cell {
     x: 49
-    y: 15
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 50
     y: 15
     tile: 0
     h_flip: 0
@@ -1558,76 +1474,6 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 34
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 35
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 36
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 37
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 38
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 39
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 40
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 41
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 42
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 43
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 44
     y: 16
     tile: 0
@@ -1663,13 +1509,6 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 49
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 50
     y: 16
     tile: 0
@@ -1678,13 +1517,6 @@ layers {
   }
   cell {
     x: 51
-    y: 16
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 52
     y: 16
     tile: 0
     h_flip: 0
@@ -2118,83 +1950,6 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 34
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 35
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 36
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 37
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 38
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 39
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 40
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 41
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 42
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 43
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 44
-    y: 17
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 45
     y: 17
     tile: 1
@@ -2224,13 +1979,6 @@ layers {
   }
   cell {
     x: 49
-    y: 17
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 50
     y: 17
     tile: 0
     h_flip: 0
@@ -2678,107 +2426,9 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 34
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 35
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 36
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 37
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 38
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 39
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 40
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 41
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 42
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 43
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 44
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 45
     y: 18
     tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 46
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 47
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 48
-    y: 18
-    tile: 0
     h_flip: 0
     v_flip: 0
   }
@@ -2790,21 +2440,7 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 50
-    y: 18
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 51
-    y: 18
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 52
     y: 18
     tile: 1
     h_flip: 0
@@ -3238,84 +2874,7 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 34
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 35
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 36
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 37
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 38
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 39
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 40
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 41
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 42
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 43
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 44
-    y: 19
-    tile: 1
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 45
     y: 19
     tile: 1
     h_flip: 0
@@ -3798,105 +3357,7 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 34
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 35
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 36
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 37
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 38
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 39
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 40
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 41
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 42
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 43
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 44
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 45
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 46
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 47
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 48
     y: 20
     tile: 0
     h_flip: 0
@@ -3917,13 +3378,6 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 51
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 52
     y: 20
     tile: 0
@@ -3932,13 +3386,6 @@ layers {
   }
   cell {
     x: 53
-    y: 20
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 54
     y: 20
     tile: 0
     h_flip: 0
@@ -4358,69 +3805,6 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 34
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 35
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 36
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 37
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 38
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 39
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 40
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 41
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 42
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 43
     y: 21
     tile: 0
@@ -4428,42 +3812,7 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 44
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 45
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 46
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 47
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 48
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 49
     y: 21
     tile: 0
     h_flip: 0
@@ -4484,28 +3833,7 @@ layers {
     v_flip: 0
   }
   cell {
-    x: 52
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
     x: 53
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 54
-    y: 21
-    tile: 0
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 55
     y: 21
     tile: 0
     h_flip: 0
@@ -4773,7 +4101,7 @@ layers {
   cell {
     x: 27
     y: 22
-    tile: 1
+    tile: 3
     h_flip: 0
     v_flip: 0
   }
@@ -4878,7 +4206,7 @@ layers {
   cell {
     x: 21
     y: 23
-    tile: 1
+    tile: 3
     h_flip: 0
     v_flip: 0
   }
@@ -5375,7 +4703,7 @@ layers {
   cell {
     x: 29
     y: 26
-    tile: 1
+    tile: 3
     h_flip: 0
     v_flip: 0
   }
@@ -5774,7 +5102,7 @@ layers {
   cell {
     x: 23
     y: 29
-    tile: 1
+    tile: 3
     h_flip: 0
     v_flip: 0
   }
@@ -7273,739 +6601,6 @@ layers {
     x: 79
     y: 44
     tile: 2
-    h_flip: 0
-    v_flip: 0
-  }
-}
-layers {
-  id: "gfx"
-  z: 1.0
-  is_visible: 1
-  cell {
-    x: 1
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 2
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 3
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 4
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 5
-    y: 15
-    tile: 13
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 6
-    y: 15
-    tile: 14
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 7
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 8
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 9
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 10
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 11
-    y: 15
-    tile: 14
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 12
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 13
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 14
-    y: 15
-    tile: 13
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 15
-    y: 15
-    tile: 14
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 16
-    y: 15
-    tile: 13
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 17
-    y: 15
-    tile: 14
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 18
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 19
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 20
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 21
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 22
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 23
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 24
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 25
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 26
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 27
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 28
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 29
-    y: 15
-    tile: 13
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 30
-    y: 15
-    tile: 14
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 31
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 32
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 33
-    y: 15
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 1
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 2
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 3
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 4
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 5
-    y: 16
-    tile: 7
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 6
-    y: 16
-    tile: 8
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 7
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 8
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 9
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 10
-    y: 16
-    tile: 7
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 11
-    y: 16
-    tile: 8
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 12
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 13
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 14
-    y: 16
-    tile: 7
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 15
-    y: 16
-    tile: 8
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 16
-    y: 16
-    tile: 7
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 17
-    y: 16
-    tile: 8
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 18
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 19
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 20
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 21
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 22
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 23
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 24
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 25
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 26
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 27
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 28
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 29
-    y: 16
-    tile: 7
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 30
-    y: 16
-    tile: 8
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 31
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 32
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 33
-    y: 16
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 1
-    y: 17
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 2
-    y: 17
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 1
-    y: 18
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 2
-    y: 18
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 1
-    y: 19
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 2
-    y: 19
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 1
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 2
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 3
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 4
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 5
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 6
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 7
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 8
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 9
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 10
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 11
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 12
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 13
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 14
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 15
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 16
-    y: 20
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 1
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 2
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 3
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 4
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 5
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 6
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 7
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 8
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 9
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 10
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 11
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 12
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 13
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 14
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 15
-    y: 21
-    tile: 6
-    h_flip: 0
-    v_flip: 0
-  }
-  cell {
-    x: 16
-    y: 21
-    tile: 6
     h_flip: 0
     v_flip: 0
   }

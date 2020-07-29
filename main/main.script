@@ -1,16 +1,13 @@
 local INPUT = require("modules.input")
 
-local base_step = 10
-local jump_step = 10
-local freq = 1
+local base_step, jump_step = 10, 10
+local size, margin = 80, 4
 local freq_list = {60, 30, 15, 10, 5, 2, 1}
 local update_timer
 
-local state
-local movement_vector = vmath.vector3(0, 0, 0)
 
-local size = 80
-local margin = 4
+
+
 
 local function upd(self)
 	local pos_override = {}
@@ -18,29 +15,29 @@ local function upd(self)
 	local co_size = (size / 2)
 	local up, down, left, right = {}, {}, {}, {}
 
-	if state == "glitched" then
+	if self.state == "glitched" then
 
 	else
 		if INPUT.inputs[hash("left")] then
-			movement_vector.x = -base_step
+			self.movement_vector.x = -base_step
 		elseif INPUT.inputs[hash("right")] then
-			movement_vector.x = base_step
+			self.movement_vector.x = base_step
 		else
-			movement_vector.x = 0
+			self.movement_vector.x = 0
 		end
 
 		local ray_1, ray_2
 		ray_1 = physics.raycast(pos + vmath.vector3(-co_size + margin, co_size, 0), pos + vmath.vector3(-co_size + margin, -co_size - margin, 0), {hash("world")})
 		ray_2 = physics.raycast(pos + vmath.vector3(co_size - margin, co_size, 0), pos + vmath.vector3(co_size - margin, -co_size - margin, 0), {hash("world")})
 		if (ray_1 == nil and ray_2 == nil) then
-			movement_vector.y = movement_vector.y - (0.2 * (60 / freq_list[freq]))
+			self.movement_vector.y = self.movement_vector.y - (0.2 * (60 / freq_list[self.freq]))
 		elseif INPUT.inputs[hash("up")] then
-			movement_vector.y = jump_step
-			state = "jump"
+			self.movement_vector.y = jump_step
+			self.state = "jump"
 		end
 
-		local new_pos = pos + movement_vector * (60 / freq_list[freq])
-		print(60 / freq_list[freq])
+		local new_pos = pos + self.movement_vector * (60 / freq_list[self.freq])
+
 		up, down, left, right = {}, {}, {}, {}
 		_up, _down, _left, _right = {}, {}, {}, {}
 
@@ -63,7 +60,7 @@ local function upd(self)
 		table.insert(_right, physics.raycast(_new_pos + vmath.vector3(co_size, co_size - margin, 0), _new_pos + vmath.vector3(-co_size, co_size - margin, 0), {hash("space")}))
 		table.insert(_right, physics.raycast(_new_pos + vmath.vector3(co_size, -co_size + margin, 0), _new_pos + vmath.vector3(-co_size, -co_size + margin, 0), {hash("space")}))
 		
-		if movement_vector.x < 0 and #_left > 0 then
+		if self.movement_vector.x < 0 and #_left > 0 then
 			for key, val in ipairs(left) do
 				if pos_override.x then
 					pos_override.x = math.max(pos_override.x, val.position.x + (size / 2))--, new_pos.x)
@@ -71,7 +68,7 @@ local function upd(self)
 					pos_override.x = val.position.x + (size / 2)
 				end
 			end
-		elseif movement_vector.x > 0 and #_right > 0 then
+		elseif self.movement_vector.x > 0 and #_right > 0 then
 			for key, val in ipairs(right) do
 				if pos_override.x then
 					pos_override.x = math.min(pos_override.x, val.position.x - (size / 2), new_pos.x)
@@ -80,25 +77,25 @@ local function upd(self)
 				end
 			end
 		end
-		if movement_vector.y < 0 and #_down > 0 then
+		if self.movement_vector.y < 0 and #_down > 0 then
 			for key, val in ipairs(down) do
 				if pos_override.y then
 					pos_override.y = math.max(pos_override.y, val.position.y + (size / 2), new_pos.y)
 				else
 					pos_override.y = val.position.y + (size / 2)
 				end
-				movement_vector.y = 0
+				self.movement_vector.y = 0
 				new_pos.y = pos.y
-				state = nil
+				self.state = nil
 			end
-		elseif movement_vector.y > 0 and #_up > 0 then
+		elseif self.movement_vector.y > 0 and #_up > 0 then
 			for key, val in ipairs(up) do
 				if pos_override.y then
 					pos_override.y = math.min(pos_override.y, val.position.y - (size / 2), new_pos.y)
 				else
 					pos_override.y = val.position.y - (size / 2)
 				end
-				movement_vector.y = 0
+				self.movement_vector.y = 0
 				new_pos.y = pos.y
 			end
 		end
@@ -108,14 +105,16 @@ local function upd(self)
 		new_pos.y = pos_override.y or new_pos.y
 		go.set_position(new_pos)
 	end
-	update_timer = timer.delay(1 / freq_list[freq], false, upd)
+	update_timer = timer.delay(1 / freq_list[self.freq], false, upd)
 end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
 	msg.post("@render:", "use_fixed_projection", {near = -2, far = 2, zoom = 0.5})
-	msg.post("/gui", hash("change_frequency"), {freq = freq_list[freq]})
-	upd(self)
+	self.movement_vector = vmath.vector3(0, 0, 0)
+	self.freq = 1
+	INPUT.inputs = {}
+	msg.post("/gui", hash("change_frequency"), {freq = freq_list[self.freq]})
 end
 
 function on_input(self, action_id, action)
@@ -123,15 +122,15 @@ function on_input(self, action_id, action)
 		local key_pressed = INPUT.key[action_id]
 		if action.pressed then
 			if key_pressed == hash("speed_up") then
-				if freq_list[freq - 1] then
-					freq = freq - 1
+				if freq_list[self.freq - 1] then
+					self.freq = self.freq - 1
 				end
-				msg.post("/gui", hash("change_frequency"), {freq = freq_list[freq]})
+				msg.post("/gui", hash("change_frequency"), {freq = freq_list[self.freq]})
 			elseif key_pressed == hash("slow_down") then
-				if freq_list[freq + 1] then
-					freq = freq + 1
+				if freq_list[self.freq + 1] then
+					self.freq = self.freq + 1
 				end
-				msg.post("/gui", hash("change_frequency"), {freq = freq_list[freq]})
+				msg.post("/gui", hash("change_frequency"), {freq = freq_list[self.freq]})
 			elseif key_pressed == hash("special") then
 
 			end
@@ -143,9 +142,14 @@ function on_input(self, action_id, action)
 end
 
 function on_message(self, message_id, message, sender)
-	if message_id == hash("collision_response") then
+	if message_id == hash("delete_level") then
+		go.delete("world")
+		go.delete()
+	elseif message_id == hash("start") then
+		upd(self)
+	elseif message_id == hash("collision_response") then
 		if message.other_group == hash("exit") then
-			os.exit()
+			msg.post("/gui#menu", hash("level_complete"))
 		end
 	elseif message_id == hash("contact_point_response") then
 

@@ -3,8 +3,8 @@ instances {
   id: "char"
   prototype: "/main/char/char.go"
   position {
-    x: -680.0
-    y: 317.0
+    x: -493.0
+    y: 275.0
     z: 0.0
   }
   rotation {
@@ -23,8 +23,8 @@ scale_along_z: 0
 embedded_instances {
   id: "world"
   data: "components {\n"
-  "  id: \"level_01\"\n"
-  "  component: \"/main/levels/level_01.tilemap\"\n"
+  "  id: \"level_02\"\n"
+  "  component: \"/main/levels/level_02.tilemap\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -40,7 +40,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"/main/levels/level_01.tilemap\\\"\\n"
+  "  data: \"collision_shape: \\\"/main/levels/level_02.tilemap\\\"\\n"
   "type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"
@@ -65,8 +65,8 @@ embedded_instances {
   "}\n"
   ""
   position {
-    x: -996.0
-    y: -875.0
+    x: -640.0
+    y: -320.0
     z: 0.0
   }
   rotation {
@@ -76,8 +76,8 @@ embedded_instances {
     w: 1.0
   }
   scale3 {
-    x: 2.0
-    y: 2.0
-    z: 2.0
+    x: 1.0
+    y: 1.0
+    z: 1.0
   }
 }
