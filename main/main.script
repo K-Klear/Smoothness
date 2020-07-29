@@ -110,11 +110,21 @@ end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
-	msg.post("@render:", "use_fixed_projection", {near = -2, far = 2, zoom = 0.5})
+	msg.post("@render:", "use_fixed_projection", {near = -2, far = 2, zoom = 1})
 	self.movement_vector = vmath.vector3(0, 0, 0)
 	self.freq = 1
 	INPUT.inputs = {}
 	msg.post("/gui", hash("change_frequency"), {freq = freq_list[self.freq]})
+
+	local tiles = {
+		[0] = 2, [7] = 1
+	}
+	for x = 1, 20 do
+		for y = 1, 12 do
+			local tile = tilemap.get_tile("world#tilemap", "gfx", x, y)
+			tilemap.set_tile("world#tilemap", "layer", x, y, tiles[tile] or 1)
+		end
+	end
 end
 
 function on_input(self, action_id, action)

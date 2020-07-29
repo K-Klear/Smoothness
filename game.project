@@ -10,7 +10,7 @@ use_accelerometer = 0
 
 [display]
 width = 1280
-height = 720
+height = 768
 vsync = 0
 update_frequency = 60
 
