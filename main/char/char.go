@@ -61,13 +61,31 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 37.5\n"
-  "  data: 37.5\n"
-  "  data: 37.5\n"
+  "  data: 24.0\n"
+  "  data: 24.0\n"
+  "  data: 24.0\n"
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"
   "locked_rotation: false\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+}
+embedded_components {
+  id: "move_indicator"
+  type: "factory"
+  data: "prototype: \"/main/char/move_indicator.go\"\n"
+  "load_dynamically: false\n"
   ""
   position {
     x: 0.0

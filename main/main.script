@@ -1,13 +1,12 @@
 local INPUT = require("modules.input")
 
-local base_step, jump_step = 10, 10
-local size, margin = 80, 4
+go.property("freq", 1)
+go.property("RTX_on", true)
+
+
+local base_step, jump_step = 8, 8
+local size, margin = 48, 2
 local freq_list = {60, 30, 15, 10, 5, 2, 1}
-local update_timer
-
-
-
-
 
 local function upd(self)
 	local pos_override = {}
@@ -105,19 +104,27 @@ local function upd(self)
 		new_pos.y = pos_override.y or new_pos.y
 		go.set_position(new_pos)
 	end
-	update_timer = timer.delay(1 / freq_list[self.freq], false, upd)
+	--update_timer = timer.delay(1 / freq_list[self.freq], false, upd)
+end
+
+local function switch_graphics(self, state)
+	if state == nil then
+		self.RTX_on = not self.RTX_on
+	else
+		self.RTX_on = state
+	end
+	tilemap.set_visible("world#tilemap", "gfx", self.RTX_on)
 end
 
 function init(self)
 	msg.post(".", "acquire_input_focus")
-	msg.post("@render:", "use_fixed_projection", {near = -2, far = 2, zoom = 1})
 	self.movement_vector = vmath.vector3(0, 0, 0)
-	self.freq = 1
+	switch_graphics(self, self.RTX_on)
 	INPUT.inputs = {}
 	msg.post("/gui", hash("change_frequency"), {freq = freq_list[self.freq]})
 
 	local tiles = {
-		[0] = 2, [7] = 1
+		[0] = 2, [19] = 4
 	}
 	for x = 1, 20 do
 		for y = 1, 12 do
@@ -125,6 +132,7 @@ function init(self)
 			tilemap.set_tile("world#tilemap", "layer", x, y, tiles[tile] or 1)
 		end
 	end
+	self.move_indicator = factory.create("#move_indicator", vmath.vector3(140, 40, 0), nil, nil, vmath.vector3(10, 1, 1))
 end
 
 function on_input(self, action_id, action)
@@ -151,14 +159,30 @@ function on_input(self, action_id, action)
 	end
 end
 
+function update(self, dt)
+	if self.frame then
+		self.frame = self.frame + 1
+		if self.frame % (60 / freq_list[self.freq]) + 1 == 1 then
+			go.set(msg.url(nil, self.move_indicator, "sprite"), "tint.w", 1)
+			upd(self)
+		else
+			local bar_scale = self.frame % (60 / freq_list[self.freq]) / (60 / freq_list[self.freq])
+			go.set(msg.url(nil, self.move_indicator, "sprite"), "tint.w", bar_scale)
+		end
+	end
+end
+
 function on_message(self, message_id, message, sender)
 	if message_id == hash("delete_level") then
 		go.delete("world")
+		go.delete(self.move_indicator)
+		self.move_indicator = nil
 		go.delete()
 	elseif message_id == hash("start") then
-		upd(self)
+		self.frame = 0
 	elseif message_id == hash("collision_response") then
-		if message.other_group == hash("exit") then
+		if message.other_group == hash("exit") and not self.finished then
+			self.finished = true
 			msg.post("/gui#menu", hash("level_complete"))
 		end
 	elseif message_id == hash("contact_point_response") then

@@ -9,13 +9,15 @@ end
 
 local function load_level(self)
 	unload_level(self)
-	self.level = collectionfactory.create("/levels#"..LVL.list[LVL.current])
+	self.level = collectionfactory.create("/levels#"..LVL.list[LVL.current].id, nil, nil, {[hash("/char")] = LVL.list[LVL.current].props})
+
 	msg.post("#hud", hash("enable"))
 end
 
 function init(self)
 	msg.post("#hud", hash("disable"))
 	msg.post(".", hash("acquire_input_focus"))
+	msg.post("@render:", "use_fixed_projection", {near = -2, far = 2, zoom = 1})
 end
 
 function on_message(self, message_id, message, sender)
@@ -23,17 +25,25 @@ function on_message(self, message_id, message, sender)
 		unload_level(self)
 		if LVL.list[LVL.current + 1] then
 			LVL.current = LVL.current + 1
+			load_level(self)
+			msg.post(self.level[hash("/char")], hash("start"))
+		else
+			msg.post("#menu", hash("enable"))
+			msg.post("#hud", hash("disable"))
 		end
-		msg.post(".", hash("enable"))
-		msg.post("#hud", hash("disable"))
 	end
 end
 
 function on_input(self, action_id, action)
+	if action_id == hash("key_space") and action.pressed then
+		load_level(self)
+		msg.post("#menu", hash("disable"))
+		msg.post(self.level[hash("/char")], hash("start"))
+	end
 	if gui.pick_node(gui.get_node("start"), action.x, action.y) then
 		if action_id == hash("mouse_button_1") and action.pressed then
 			load_level(self)
-			msg.post(".", hash("disable"))
+			msg.post("#menu", hash("disable"))
 			msg.post(self.level[hash("/char")], hash("start"))
 		elseif not action_id then
 			if gui.pick_node(gui.get_node("start"), action.x, action.y) then
