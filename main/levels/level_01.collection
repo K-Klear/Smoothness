@@ -3,8 +3,8 @@ instances {
   id: "char"
   prototype: "/main/char/char.go"
   position {
-    x: 329.0
-    y: 415.0
+    x: 352.0
+    y: 416.0
     z: 0.0
   }
   rotation {
@@ -12,6 +12,72 @@ instances {
     y: 0.0
     z: 0.0
     w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "enemy"
+  prototype: "/main/char/enemy.go"
+  position {
+    x: 544.0
+    y: 288.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "enemy"
+    properties {
+      id: "x"
+      value: "7.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "y"
+      value: "8.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "enemy1"
+  prototype: "/main/char/enemy.go"
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  component_properties {
+    id: "enemy"
+    properties {
+      id: "x"
+      value: "12.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
+    properties {
+      id: "y"
+      value: "5.0"
+      type: PROPERTY_TYPE_NUMBER
+    }
   }
   scale3 {
     x: 1.0

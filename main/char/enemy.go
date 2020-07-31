@@ -1,6 +1,6 @@
 components {
-  id: "main"
-  component: "/main/main.script"
+  id: "enemy"
+  component: "/main/char/enemy.script"
   position {
     x: 0.0
     y: 0.0
@@ -16,8 +16,8 @@ components {
 embedded_components {
   id: "sprite"
   type: "sprite"
-  data: "tile_set: \"/main/main.atlas\"\n"
-  "default_animation: \"player\"\n"
+  data: "tile_set: \"/main/levels/tiles.tilesource\"\n"
+  "default_animation: \"enemy\"\n"
   "material: \"/builtins/materials/sprite.material\"\n"
   "blend_mode: BLEND_MODE_ALPHA\n"
   ""
@@ -41,10 +41,8 @@ embedded_components {
   "mass: 0.0\n"
   "friction: 0.1\n"
   "restitution: 0.5\n"
-  "group: \"player\"\n"
-  "mask: \"world\"\n"
-  "mask: \"exit\"\n"
-  "mask: \"enemy\"\n"
+  "group: \"enemy\"\n"
+  "mask: \"player\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
   "    shape_type: TYPE_BOX\n"
@@ -62,9 +60,9 @@ embedded_components {
   "    index: 0\n"
   "    count: 3\n"
   "  }\n"
-  "  data: 24.0\n"
-  "  data: 24.0\n"
-  "  data: 24.0\n"
+  "  data: 30.0\n"
+  "  data: 30.0\n"
+  "  data: 30.0\n"
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"

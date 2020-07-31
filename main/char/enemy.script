@@ -1,0 +1,7 @@
+go.property("x", 1)
+go.property("y", 1)
+
+function init(self)
+	go.set_position(vmath.vector3((self.x * 64) - 32, (self.y * 64) - 32, 1))
+	msg.post("char", hash("enemy_spawned"), {go = go.get_id(), x = self.x, y = self.y})
+end
