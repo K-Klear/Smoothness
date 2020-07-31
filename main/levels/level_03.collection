@@ -22,7 +22,7 @@ instances {
     }
     properties {
       id: "player_y"
-      value: "7.0"
+      value: "6.0"
       type: PROPERTY_TYPE_NUMBER
     }
   }
@@ -55,106 +55,7 @@ instances {
     }
     properties {
       id: "y"
-      value: "3.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "enemy1"
-  prototype: "/main/char/enemy.go"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  component_properties {
-    id: "enemy"
-    properties {
-      id: "x"
-      value: "19.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "y"
-      value: "2.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "enemy2"
-  prototype: "/main/char/enemy.go"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  component_properties {
-    id: "enemy"
-    properties {
-      id: "x"
-      value: "19.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "y"
-      value: "7.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "enemy3"
-  prototype: "/main/char/enemy.go"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  component_properties {
-    id: "enemy"
-    properties {
-      id: "x"
-      value: "8.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "y"
-      value: "2.0"
+      value: "11.0"
       type: PROPERTY_TYPE_NUMBER
     }
   }
@@ -169,7 +70,7 @@ embedded_instances {
   id: "world"
   data: "components {\n"
   "  id: \"tilemap\"\n"
-  "  component: \"/main/levels/level_02.tilemap\"\n"
+  "  component: \"/main/levels/level_03.tilemap\"\n"
   "  position {\n"
   "    x: 0.0\n"
   "    y: 0.0\n"
@@ -185,7 +86,7 @@ embedded_instances {
   "embedded_components {\n"
   "  id: \"collisionobject\"\n"
   "  type: \"collisionobject\"\n"
-  "  data: \"collision_shape: \\\"/main/levels/level_02.tilemap\\\"\\n"
+  "  data: \"collision_shape: \\\"/main/levels/level_03.tilemap\\\"\\n"
   "type: COLLISION_OBJECT_TYPE_STATIC\\n"
   "mass: 0.0\\n"
   "friction: 0.1\\n"

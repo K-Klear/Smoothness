@@ -15,7 +15,8 @@ local function upd(self)
 		if x < 0 or x > 20 or y < 0 or y > 12 then
 			return false
 		else
-			return tilemap.get_tile("world#tilemap", "layer", x, y) == 2
+			local tile = tilemap.get_tile("world#tilemap", "layer", x, y)
+			return (tile == 2) or (tile == 4)
 		end
 	end
 	local function get_step_up(self, big_step, x, y)
@@ -56,45 +57,47 @@ local function upd(self)
 	elseif freq_list[self.freq] == 1 then
 		big_step = 4
 	end
-	if not self.moving then
-		if INPUT.inputs[hash("up")] then
-			local step = get_step_up(self, big_step, self.player_x, self.player_y)
-			if step then self.moving = {x = 0, y = step} end
-		elseif INPUT.inputs[hash("down")] then
-			local step = get_step_down(self, big_step, self.player_x, self.player_y)
-			if step then self.moving = {x = 0, y = -step} end
-		elseif INPUT.inputs[hash("left")] then
-			local step = get_step_left(self, big_step, self.player_x, self.player_y)
-			if step then self.moving = {x = -step, y = 0} end
-		elseif INPUT.inputs[hash("right")] then
-			local step = get_step_right(self, big_step, self.player_x, self.player_y)
-			if step then self.moving = {x = step, y = 0} end
+	if not self.dead then
+		if not self.moving then
+			if INPUT.inputs[hash("up")] then
+				local step = get_step_up(self, big_step, self.player_x, self.player_y)
+				if step then self.moving = {x = 0, y = step} end
+			elseif INPUT.inputs[hash("down")] then
+				local step = get_step_down(self, big_step, self.player_x, self.player_y)
+				if step then self.moving = {x = 0, y = -step} end
+			elseif INPUT.inputs[hash("left")] then
+				local step = get_step_left(self, big_step, self.player_x, self.player_y)
+				if step then self.moving = {x = -step, y = 0} end
+			elseif INPUT.inputs[hash("right")] then
+				local step = get_step_right(self, big_step, self.player_x, self.player_y)
+				if step then self.moving = {x = step, y = 0} end
+			end
 		end
-	end
-	if self.moving then
-		if not (freq_list[self.freq] < 4) then
-			local pos = go.get_world_position()
-			local target_x = ((self.player_x + self.moving.x) * 64) - 32
-			local dist_x = math.abs(pos.x - target_x)
-			local target_y = ((self.player_y + self.moving.y) * 64) - 32
-			local dist_y = math.abs(pos.y - target_y)
-			local step = 256 / freq_list[self.freq]
-			go.set_position(vmath.vector3(pos.x + step * self.moving.x, pos.y + step * self.moving.y, 1))
-			target_x = ((self.player_x + self.moving.x) * 64) - 32
-			dist_x = math.abs(pos.x - target_x)
-			target_y = ((self.player_y + self.moving.y) * 64) - 32
-			dist_y = math.abs(pos.y - target_y)
-			if dist_x < step and dist_y < step then
-				go.set_position(vmath.vector3(target_x, target_y, 1))
+		if self.moving then
+			if not (freq_list[self.freq] < 4) then
+				local pos = go.get_world_position()
+				local target_x = ((self.player_x + self.moving.x) * 64) - 32
+				local dist_x = math.abs(pos.x - target_x)
+				local target_y = ((self.player_y + self.moving.y) * 64) - 32
+				local dist_y = math.abs(pos.y - target_y)
+				local step = 256 / freq_list[self.freq]
+				go.set_position(vmath.vector3(pos.x + step * self.moving.x, pos.y + step * self.moving.y, 1))
+				target_x = ((self.player_x + self.moving.x) * 64) - 32
+				dist_x = math.abs(pos.x - target_x)
+				target_y = ((self.player_y + self.moving.y) * 64) - 32
+				dist_y = math.abs(pos.y - target_y)
+				if dist_x < step and dist_y < step then
+					go.set_position(vmath.vector3(target_x, target_y, 1))
+					self.player_x = self.player_x + self.moving.x
+					self.player_y = self.player_y + self.moving.y
+					self.moving = nil
+				end
+			else
 				self.player_x = self.player_x + self.moving.x
 				self.player_y = self.player_y + self.moving.y
 				self.moving = nil
+				go.set_position(vmath.vector3((self.player_x * 64) - 32, (self.player_y * 64) - 32, 1))
 			end
-		else
-			self.player_x = self.player_x + self.moving.x
-			self.player_y = self.player_y + self.moving.y
-			self.moving = nil
-			go.set_position(vmath.vector3((self.player_x * 64) - 32, (self.player_y * 64) - 32, 1))
 		end
 	end
 	for key, enemy in ipairs(self.enemies) do
@@ -258,17 +261,9 @@ end
 function on_input(self, action_id, action)
 	if action_id then
 		local key_pressed = INPUT.key[action_id]
-		if action.pressed and not self.moving then
-			if key_pressed == hash("speed_up") then
-				if freq_list[self.freq - 1] then
-					self.freq = self.freq - 1
-				end
-				msg.post("/gui", hash("change_frequency"), {freq = freq_list[self.freq]})
-			elseif key_pressed == hash("slow_down") then
-				if freq_list[self.freq + 1] then
-					self.freq = self.freq + 1
-				end
-				msg.post("/gui", hash("change_frequency"), {freq = freq_list[self.freq]})
+		if action.pressed then
+			if action_id == hash("key_esc") and not self.dead then
+				msg.post("/gui#menu", hash("reset_level"))
 			end
 		end
 		if key_pressed then
@@ -288,6 +283,9 @@ end
 
 function on_message(self, message_id, message, sender)
 	if message_id == hash("delete_level") then
+		for key, val in ipairs(self.enemies) do
+			go.delete(val.go)
+		end
 		go.delete("world")
 		go.delete()
 	elseif message_id == hash("start") then
@@ -299,7 +297,11 @@ function on_message(self, message_id, message, sender)
 			self.finished = true
 			msg.post("/gui#menu", hash("level_complete"))
 		elseif message.other_group == hash("enemy") then
-			print("ouch!")
+			if not self.dead then
+				sprite.play_flipbook("#sprite", "death")
+				self.dead = true
+				timer.delay(2, false, function() msg.post("/gui#menu", hash("reset_level")) end)
+			end
 		end
 	elseif message_id == hash("contact_point_response") then
 

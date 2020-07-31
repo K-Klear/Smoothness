@@ -19,72 +19,6 @@ instances {
     z: 1.0
   }
 }
-instances {
-  id: "enemy"
-  prototype: "/main/char/enemy.go"
-  position {
-    x: 544.0
-    y: 288.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  component_properties {
-    id: "enemy"
-    properties {
-      id: "x"
-      value: "7.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "y"
-      value: "8.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "enemy1"
-  prototype: "/main/char/enemy.go"
-  position {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  component_properties {
-    id: "enemy"
-    properties {
-      id: "x"
-      value: "12.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-    properties {
-      id: "y"
-      value: "5.0"
-      type: PROPERTY_TYPE_NUMBER
-    }
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
 scale_along_z: 0
 embedded_instances {
   id: "world"
@@ -111,8 +45,8 @@ embedded_instances {
   "mass: 0.0\\n"
   "friction: 0.1\\n"
   "restitution: 0.5\\n"
-  "group: \\\"world, space\\\"\\n"
-  "mask: \\\"body\\\"\\n"
+  "group: \\\"world, space, exit\\\"\\n"
+  "mask: \\\"player\\\"\\n"
   "linear_damping: 0.0\\n"
   "angular_damping: 0.0\\n"
   "locked_rotation: false\\n"
